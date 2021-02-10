@@ -16,7 +16,7 @@ const chatAdmin = "Chat Admin";
 /**
  * Initialize view PORT
  */
-const PORT = 3000 || process.env.PORT;
+const PORT = 80 || process.env.PORT;
 let usernameQueryParameter = '';
 let roomQueryParameter = '';
 

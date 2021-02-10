@@ -1,0 +1,240 @@
+$trebuchet: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+$backgroundColor: #ffffff;
+$joinCardColor: #202731;
+$headerColor: #1d2c3d;
+$mainColor: #000;
+$textColor: #f5f5f5;
+$messageBackgroundColor: #505da762;
+$lightGray: #f5f0f0;
+$messageTimeColor: #5e5ee0;
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.main-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: $trebuchet;
+    .join-wrapper {
+        min-height: 45%;
+        min-width: 25%;
+        //border: 2px dashed red;
+        border: 1px solid $mainColor;
+        border-radius: 5px;
+        .header {
+            //border: 2px dashed blue;
+            padding-left: 5px;
+            overflow: hidden;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            height: 25%;
+            background-color: $headerColor;
+            color: $textColor;
+        }
+        .join-room-form {
+            //border: 2px dashed green;
+            height: 72%;
+            
+            .main-form {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 35px;
+                font-size: 24px;
+                font-weight: 600;
+                .form-username {
+                    margin-left: 5px;
+                    input {
+                        font-size: 20px;
+                        width: 95%;
+                        height: 24px;
+                        border: none;
+                        border-bottom: 1px solid $mainColor;
+                    }
+                    input:focus {
+                        outline: none;
+                    }
+                }
+                .form-room {
+                    margin-left: 5px;
+                    select {
+                        font-size: 20px;
+                        width: 35%;
+                        height: 24px;
+                        border: none;
+                        border-bottom: 1px solid $mainColor;
+                    }
+                    select:focus {
+                        outline: none;
+                    }
+                }
+                .button-container {
+                    display: flex;
+                    justify-content: center;
+                    margin-left: 5px;
+                    .btn {
+                        font-family: $trebuchet;
+                        color: $backgroundColor;
+                        background-color: $joinCardColor;
+                        padding: 9px;
+                        border-radius: 5px;
+                        border: none;
+                        transition: 0.3s;
+                        opacity: 1.0;
+                        
+                    }
+                    .btn:hover {
+                        cursor: pointer;
+                        opacity: 0.7;
+                    }
+                    
+                }
+            }
+            
+
+        }
+    }
+
+    .chat-wrapper {
+        //border: 1px dashed red;
+        width: 100vw;
+        height: 100%;
+        border-radius: 2px;
+        .room-header {
+            //border: 1px dashed red;
+            border-radius: 2px;
+            color: $textColor;
+            display: flex;
+            justify-content: space-between;
+            padding: 1px 10px;
+            align-items: center;
+            height: 9%;
+            background-color: $joinCardColor;
+            border-bottom: 2px solid $backgroundColor;
+
+            .leave-room {
+                color: $mainColor;
+                background-color: $lightGray;
+                padding: 3px;
+                text-decoration: none;
+                border-radius: 3px;
+                transition: 0.1s;
+            }
+            .leave-room:hover {
+                background-color: red;
+                cursor: pointer;
+                color: $textColor
+            }
+        }
+
+        .chat-container {
+            display: grid;
+            grid-template-columns: 20% 80%;
+            overflow-y: scroll;
+            //border: 1px dashed blue;
+            height: 83%;
+            background-color: $joinCardColor;
+            .side-bar {
+                //border: 1px dashed green;
+                padding: 5px;
+                border-right: 2px solid $backgroundColor;
+                .room-name-container {
+                    background-color: $lightGray;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: left;
+
+                    margin: 5px;
+                    //border: 1px solid black;
+                    border-radius: 3px;
+                    padding: 5px;
+                }
+                .users-name-container {
+                    background-color: $lightGray;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: left;
+
+                    margin: 5px;
+                    //border: 1px solid black;
+                    border-radius: 3px;
+                    padding: 5px;
+
+                    li {
+                        list-style-type: none;
+                        margin: 6px;
+                    }
+                }
+            }
+            .chat-messages {
+                //border: 1px dashed blueviolet;
+                padding: 5px;
+                
+                .message-added {
+                    background-color: $lightGray;
+                    //border: 1px solid red;
+                    margin: 3px;
+                    border-radius: 3px;
+                    padding: 5px;
+                    
+                    .message-info {
+                        //border: 1px solid red;
+                        .message-time {
+                            //border: 1px solid green;
+                            color: $messageTimeColor;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+        .chat-form-container {
+            //border: 1px solid brown;
+            height: 6%;
+            // .type-status {
+                
+            // }
+            .chat-form {
+                //border: 1px solid magenta;
+                height: 100%;
+                margin: 3px;
+                
+                .message {
+                    
+                    width: 90%;
+                    height: 20px;
+                    border: none;
+                    border-bottom: 1px solid $mainColor;
+                    outline: none;
+                }
+                .message:hover {
+                    outline: none;
+                }
+                .btn {
+                    font-family: $trebuchet;
+                    width: 9%;
+                    border: none;
+                    background-color: $joinCardColor;
+                    border-radius: 3px;
+                    height: 22px;
+                    color: $textColor;
+                    transition: 0.3s;
+                    opacity: 1.0;
+                }
+                .btn:hover {
+                    opacity: 0.7;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

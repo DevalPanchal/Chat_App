@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>ChatRooms</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="chat-wrapper">
+            <div class="room-header">
+                <h1><i class="fas fa-coffee"></i> Coffee Chats</h1>
+                <a href="/" class="leave-room">Leave Room</a>
+            </div>
+
+            <div class="chat-container">
+                <div class="side-bar">
+                    <div class="room-name-container">
+                        <h2>Room Name</h2>
+                        <h3 id="room-name"></h3>
+                    </div>
+                    <div class="users-name-container">
+                        <h2>Users</h2>
+                        <h3 id="users"></h3>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chat-messages"></div>
+            </div>
+
+            <div class="chat-form-container">
+                <form id="chat-form" class="chat-form">
+                    <input type="text" class="message" id="message" placeholder="Enter Message..." required />
+                    <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+                    <div id="type-status" class="type-status"></div>
+                </form>
+                
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+        integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascript/client.js"></script>
+</body>
+</html>

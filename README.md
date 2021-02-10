@@ -2,7 +2,7 @@
 This is a simple real-time chat application using the socket.io library.
 
 # About
-This project was made as a fun side project to learn backend development with express. Later this project was used locally between friends to communicate about school projects, without having data stored anywhere.
+This project was made as a fun side project to learn backend development with express. Later this project was used locally between friends to communicate about school projects.
 
 # Technologies Used
 The technologies used in this application are:

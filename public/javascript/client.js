@@ -4,12 +4,12 @@ const socket = io();
 
 // Get the elements 
 const chat_form = document.getElementById('chat-form');
-const chat_messages = document.getElementById('chat-messages');
+const chat_messages = document.querySelector('.chat-messages');
 const room_name = document.getElementById('room-name');
 const userListItem = document.getElementById('users');
 const typingStatus = document.getElementById('type-status');
 const messageInputBox = document.getElementById('message');
-let timer, timeout = 3000;
+let timer, timeout = 1000;
 
 
 // Declaring the query parameter's
@@ -27,7 +27,7 @@ socket.emit('join-room', { username, room });
 socket.on('users-in-room', ({ room, users }) => {
     outputCurrentRoomName(room);
     outputCurrentUsers(users);
-})
+});
 
 /**
  *   Handle message output to front end
@@ -35,17 +35,20 @@ socket.on('users-in-room', ({ room, users }) => {
 socket.on('message', (message) => {
     console.log(message);
     displayMessage(message);
+
+    // scroll to bottom when the height reaches
+    chat_messages.scrollTop = chat_messages.scrollHeight;
 });
 
 /**
  * Output user is typing message on DOM
  */
-socket.on('typing', () => {
-    typingStatus.innerText = `${username} is typing...`;
+socket.on('typing', (data) => {
+    typingStatus.innerText = `${data} is typing...`;
 });
 socket.on('not-typing', () => {
     typingStatus.innerText = ``;
-})
+});
 
 /**
  * Adding event listener to the send button on chat.ejs to handle messages
@@ -65,14 +68,32 @@ chat_form.addEventListener('submit', (e) => {
 });
 
 /**
+ * Add event listener to when a user is typing
+ */
+messageInputBox.addEventListener('keypress', () => {
+    window.clearTimeout(timer);
+    if (messageInputBox.value.length > 0) {
+        socket.emit('typing', messageInputBox.value);
+    }
+});
+
+messageInputBox.addEventListener('keyup', () => {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => {
+        socket.emit('not-typing', '');
+    }, timeout);
+
+});
+
+/**
  * Output message to DOM
  */
 function displayMessage(message) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message-added');
     messageDiv.innerHTML = `<p class="message-info">${message.username} <span class="message-time">${message.time}</span></p><p>${message.text}</p>`;
-    
-    document.getElementById('chat-messages').appendChild(messageDiv);
+
+    document.querySelector('.chat-messages').appendChild(messageDiv);
 }
 
 /**
@@ -103,18 +124,18 @@ function outputCurrentUsers(users) {
  * Add event listener to message input when the user is typing
  */
 
-messageInputBox.addEventListener('keypress', (e) => {
-    window.clearTimeout(timer);
-    socket.emit('typing', messageInputBox.value);
-});
+// messageInputBox.addEventListener('keypress', (e) => {
+//     window.clearTimeout(timer);
+//     socket.emit('typing', messageInputBox.value);
+// });
 
-/**
- * Add event listener to message input when user is not typing
- */
-messageInputBox.addEventListener('keyup', (e) => {
-    window.clearTimeout(timer);
-    
-    timer = window.setTimeout(() => {
-        socket.emit('not-typing', '');
-    }, timeout);
-});
+// /**
+//  * Add event listener to message input when user is not typing
+//  */
+// messageInputBox.addEventListener('keyup', (e) => {
+//     window.clearTimeout(timer);
+
+//     timer = window.setTimeout(() => {
+//         socket.emit('not-typing', '');
+//     }, timeout);
+// });

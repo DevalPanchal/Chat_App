@@ -21,7 +21,7 @@ const PORT = 80 || process.env.PORT;
 /**
  * Telling server to listen to PORT
  */
-server.listen(process.env.PORT || 3000, () => console.log(`App is listening on port ${PORT}`));
+server.listen(process.env.PORT || 3000, () => console.log(`App is listening on port 3000`));
 let usernameQueryParameter = '';
 let roomQueryParameter = '';
 
@@ -61,19 +61,6 @@ io.on('connection', (socket) => {
     // When a user has connected to a socket, log to console
     console.log(`${usernameQueryParameter} has joined the chat in ${roomQueryParameter}`);
 
-    /**
-     * handle typing event
-     */
-    socket.on('typing', () => {
-        const user = getCurrentUser(socket.id);
-        socket.broadcast.emit('typing', user.username);
-    });
-
-    socket.on('not-typing', (data) => {
-        const user = getCurrentUser(socket.id);
-        socket.broadcast.emit('not-typing', user.username);
-    });
-    
     socket.on('join-room', ({ username, room }) => {
         const user = joinUser(socket.id, username, room);
         // Join the room
@@ -93,9 +80,23 @@ io.on('connection', (socket) => {
     });
 
     // When a user sends a chat log to brower tools and log to console
-    socket.on('chat-message', (message) => {
+    socket.on('chat-message', (msg) => {
         const user = getCurrentUser(socket.id);
-        io.to(user.room).emit('message', formatOutputMessage(user.username, message));
+        io.to(user.room).emit('message', formatOutputMessage(user.username, msg));
+    });
+
+
+    /**
+     * handle typing event
+     */
+    socket.on('typing', () => {
+        const user = getCurrentUser(socket.id);
+        socket.broadcast.to(user.room).emit('typing', `${user.username}`);
+    });
+
+    socket.on('not-typing', () => {
+        
+        socket.broadcast.emit('not-typing', ``);
     });
 
     // when a user has left the socket, display the callback

@@ -5,6 +5,7 @@ $headerColor: #1d2c3d;
 $mainColor: #000;
 $textColor: #f5f5f5;
 $messageBackgroundColor: #505da762;
+$backgroundTertiary: #202225;
 $lightGray: #f5f0f0;
 $messageTimeColor: #5e5ee0;
 
@@ -135,7 +136,7 @@ body {
         .chat-container {
             display: grid;
             grid-template-columns: 20% 80%;
-            overflow-y: scroll;
+            
             //border: 1px dashed blue;
             height: 83%;
             background-color: $joinCardColor;
@@ -178,7 +179,7 @@ body {
             .chat-messages {
                 //border: 1px dashed blueviolet;
                 padding: 5px;
-                
+                overflow-y: scroll;
                 .message-added {
                     background-color: $lightGray;
                     //border: 1px solid red;

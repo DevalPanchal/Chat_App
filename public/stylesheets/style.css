@@ -157,7 +157,6 @@ body {
   display: grid;
   -ms-grid-columns: 20% 80%;
       grid-template-columns: 20% 80%;
-  overflow-y: scroll;
   height: 83%;
   background-color: #202731;
 }
@@ -214,6 +213,7 @@ body {
 
 .main-container .chat-wrapper .chat-container .chat-messages {
   padding: 5px;
+  overflow-y: scroll;
 }
 
 .main-container .chat-wrapper .chat-container .chat-messages .message-added {

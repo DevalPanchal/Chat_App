@@ -70,7 +70,7 @@ chat_form.addEventListener('submit', (e) => {
 /**
  * Add event listener to when a user is typing
  */
-messageInputBox.addEventListener('keypress', () => {
+messageInputBox.addEventListener('keypress', (e) => {
     window.clearTimeout(timer);
     if (messageInputBox.value.length > 0) {
         socket.emit('typing', messageInputBox.value);

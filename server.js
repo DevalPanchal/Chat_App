@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
         socket.join(user.room);
 
         // Welcome the current user by the "chatrooms admin"
-        socket.emit('message', formatOutputMessage(chatAdmin, `Welcome to Coffee Chats`));
+        socket.emit('message', formatOutputMessage(chatAdmin, `Welcome to JustChat`));
         
         // Let other's in the room know that a new user has joined the chat
         socket.broadcast.to(user.room).emit('message', formatOutputMessage(chatAdmin, `${user.username} has joined the chat!`));

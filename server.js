@@ -17,6 +17,11 @@ const chatAdmin = "Chat Admin";
  * Initialize view PORT
  */
 const PORT = 80 || process.env.PORT;
+
+/**
+ * Telling server to listen to PORT
+ */
+server.listen(process.env.PORT || 3000, () => console.log(`App is listening on port ${PORT}`));
 let usernameQueryParameter = '';
 let roomQueryParameter = '';
 
@@ -110,8 +115,3 @@ io.on('connection', (socket) => {
         });
     });
 });
-
-/**
- * Telling server to listen to PORT
- */
-server.listen(PORT, () => console.log(`App is listening on port ${PORT}`));

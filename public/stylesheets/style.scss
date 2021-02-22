@@ -28,7 +28,7 @@ body {
     align-items: center;
     font-family: $trebuchet;
     
-    background: linear-gradient(20deg, $backgroundTertiary 50%, $backgroundColor 50%);
+    background: $backgroundTertiary;
     .join-wrapper {
         min-height: 45%;
         min-width: 25%;

@@ -20,7 +20,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-  background: linear-gradient(20deg, #202225 50%, #ffffff 50%);
+  background: #202225;
 }
 
 .main-container .join-wrapper {
